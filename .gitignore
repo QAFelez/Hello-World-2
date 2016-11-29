@@ -1,47 +1,21 @@
-# Windows image file caches
-Thumbs.db
-ehthumbs.db
+# All Maven output goes here, compiled classes, generated code, etc.
+# Ignore only folders named target in root dir and direct child dirs.
+/target/
+*/target/
 
-# Folder config file
-Desktop.ini
+# Eclipse generated files.
+.settings
+.classpath
+.project
+# IntelliJ generated files.
+*.iml
+.idea
 
-# Recycle Bin used on file shares
-$RECYCLE.BIN/
-
-# Windows Installer files
-*.cab
-*.msi
-*.msm
-*.msp
-
-# Windows shortcuts
-*.lnk
-
-# =========================
-# Operating System Files
-# =========================
-
-# OSX
-# =========================
-
+# Autogenerared OS X clutter.
 .DS_Store
-.AppleDouble
-.LSOverride
+._.DS_Store
+# Windows explorer is just as bad.
+Thumbs.db
 
-# Thumbnails
-._*
-
-# Files that might appear in the root of a volume
-.DocumentRevisions-V100
-.fseventsd
-.Spotlight-V100
-.TemporaryItems
-.Trashes
-.VolumeIcon.icns
-
-# Directories potentially created on remote AFP share
-.AppleDB
-.AppleDesktop
-Network Trash Folder
-Temporary Items
-.apdisk
+# Various text editor swap files, etc.
+.*.swp

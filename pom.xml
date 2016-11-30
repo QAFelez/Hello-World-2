@@ -80,15 +80,15 @@
                         <id>default-test</id>
                         <configuration>
                             <includes>
-                                <include>com/example/javamavenjunithelloworld/unit</include>
+                                <include>com/example/javamavenjunithelloworld/integration</include>
                             </includes>
                             <excludes>
-                                <exclude>com/example/javamavenjunithelloworld/integration</exclude>
+                                <exclude>com/example/javamavenjunithelloworld/unit</exclude>
                             </excludes>
                         </configuration>
                     </execution>
                     
-                    <execution>
+          <!--           <execution>
                         <id>integration-test</id>
                         <phase>integration-test</phase>
                         <goals>
@@ -103,6 +103,7 @@
                             </excludes>
                         </configuration>
                     </execution>
+           -->          
                 </executions>
       </plugin>
     <!--   <plugin>

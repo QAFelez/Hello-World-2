@@ -15,6 +15,8 @@
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
   </properties>
 
+
+
   <dependencies>
     <!-- Testing dependencies. -->
     <dependency>
@@ -76,18 +78,19 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <version>2.16</version>
         <executions>
-                    <execution>
+                     <execution>
                         <id>default-test</id>
                         <configuration>
                             <includes>
-                                <include>com/example/javamavenjunithelloworld/unit</include>
+                                <include>*/unit</include>
                             </includes>
-                            <excludes>
-                                <exclude>com/example/javamavenjunithelloworld/integration</exclude>
+                         
+                            <excludes>   
+                             <exclude>*/integration</exclude>
                             </excludes>
                         </configuration>
                     </execution>
-                    
+                   
                    <execution>
                         <id>integration-test</id>
                         <phase>integration-test</phase>
@@ -95,14 +98,17 @@
                             <goal>test</goal>
                         </goals>
                         <configuration>
-                            <includes>
-                                <include>com/example/javamavenjunithelloworld/integration</include>
+                          <!--   <includes>
+                                <include>*/integration</include>
                             </includes>
                             <excludes>
-                                <exclude>com/example/javamavenjunithelloworld/unit</exclude>
+                                <exclude>*/unit</exclude>
                             </excludes>
+                             -->
+                             <skipTests>*/unit</skipTests>
                         </configuration>
                     </execution>
+                  
                 </executions>
       </plugin>
     <!--   <plugin>

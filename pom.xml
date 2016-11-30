@@ -95,10 +95,10 @@
                         </goals>
                         <configuration>
                             <includes>
-                                <include>**/integration/**</include>
+                                <include>com/example/javamavenjunithelloworld/integration</include>
                             </includes>
                             <excludes>
-                                <exclude>**/unit/**</exclude>
+                                <exclude>com/example/javamavenjunithelloworld/unit</exclude>
                             </excludes>
                         </configuration>
                     </execution>

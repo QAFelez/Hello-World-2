@@ -83,6 +83,7 @@
                <goal>verify</goal>
             </goals>
           </execution>
+         </executions>
       </plugin>
         <!-- Integration tests are run by failsafe. -->
         <!-- Classes under src/test/java called *IT are included automatically. -->

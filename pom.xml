@@ -95,10 +95,10 @@
                         </goals>
                         <configuration>
                             <includes>
-                                <include>**/integration/**</include>
+                                <exclude>**/integration/**</exclude>
                             </includes>
                             <excludes>
-                                <exclude>**/unit/**</exclude>
+                                <include>**/unit/**</include>
                             </excludes>
                         </configuration>
                     </execution>

@@ -13,6 +13,8 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+	<!-- Posibilidad de evitar todo tipo de tests (por defecto evitar) -->
+    <skipTests>true</skipTests>
   </properties>
 
   <dependencies>
@@ -71,12 +73,16 @@
    -->   
         <!-- Unit tests are run by surefire. -->
         <!-- Classes under src/test/java called *Test are included automatically. -->
-        <!-- Integration tests are run during the test phase. 
+        <!-- Integration tests are run during the test phase. -->
       <plugin>
          <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
         <version>2.16</version>
-      </plugin>-->
+        <configuration>
+		<!-- Evitar tests, controlado por un flag que se puede cambiar desde línea de comando -->		
+          <skipTests>${skipTests}</skipTests>
+        </configuration>		
+      </plugin>
         <!-- Integration tests are run by failsafe. -->
         <!-- Classes under src/test/java called *IT are included automatically. -->
         <!-- Integration tests are run during the verify phase. -->
@@ -84,6 +90,10 @@
       <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-failsafe-plugin</artifactId>
         <version>2.16</version>
+        <configuration>
+		 <!-- Evitar tests, controlado por un flag que se puede cambiar desde línea de comando -->
+          <skipTests>${skipTests}</skipTests>
+        </configuration>		
         <executions>
           <execution>
             <goals>

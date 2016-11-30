@@ -19,7 +19,7 @@ node {
       // Run the maven build
       if (isUnix()) {
        //  sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean package"
-          sh "'${mvnHome}/bin/mvn' surefire:test -Dtest=HelloAppTest"
+          sh "'${mvnHome}/bin/mvn' -DskipTests=false surefire:test -Dtest=HelloAppTest"
       } 
    }
    // El tercer stage corre las pruebas de integración, con el plugin failsafe, y 
@@ -28,7 +28,7 @@ node {
       // Run the maven build
       if (isUnix()) {
        //  sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean package"
-          sh "'${mvnHome}/bin/mvn' failsafe:integration-test -Dtest=HelloWithTestsIT"
+          sh "'${mvnHome}/bin/mvn' -DskipTests=false failsafe:integration-test -Dtest=HelloWithTestsIT"
       } 
    }
    stage('Results') {

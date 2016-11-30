@@ -75,7 +75,7 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <version>2.16</version>
         <configuration>
-         
+        
           <excludes>
           <exclude>**/HelloTest.java</exclude>
           <exclude>**/HelloAppTest.java</exclude>

@@ -86,7 +86,7 @@
                             </excludes>
                         </configuration>
                     </execution>
-                 <!--    <execution>
+                     <execution>
                         <id>integration-test</id>
                         <phase>integration-test</phase>
                         <goals>
@@ -101,7 +101,7 @@
                             </excludes>
                         </configuration>
                     </execution>
-                     -->
+                     
                 </executions>
       </plugin>
       <!-- 

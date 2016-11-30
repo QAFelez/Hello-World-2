@@ -78,6 +78,10 @@
         <executions>
                     <execution>
                         <id>default-test</id>
+                        <phase>unit-test</phase>
+                        <goals>
+                            <goal>test-unit</goal>
+                        </goals>
                         <configuration>
                             <includes>
                                 <include>**/unit/**</include>
@@ -95,10 +99,10 @@
                         </goals>
                         <configuration>
                             <includes>
-                                <exclude>**/integration/**</exclude>
+                                <include>**/integration/**</include>
                             </includes>
                             <excludes>
-                                <include>**/unit/**</include>
+                                <exclude>**/unit/**</exclude>
                             </excludes>
                         </configuration>
                     </execution>

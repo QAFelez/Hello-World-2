@@ -1,0 +1,39 @@
+//Aquí se separan las pruebas de integración de componentes de las unitarias
+// En este caso el POM.xml incluía todas las pruebas. Opcionalmente se pueden
+// usar comodines para descartar o aceptar ficheros (p.e. excluir ficheros acabados
+// en IT de las pruebas unitarias)
+node {
+   def mvnHome
+   // El primer Stage coje el código del repositorio
+   stage('Preparation') {
+      // Get some code from a GitHub repository
+      git 'https://github.com/QAFelez/Hello-World-2.git' 
+      // Get the Maven tool.
+      // ** NOTE: This 'M3' Maven tool must be configured
+      // **       in the global configuration.           
+      mvnHome = tool 'Maven'
+   }
+   // El segundo Stage corre las unitarias, con el plugin surefire, y en este caso
+   // solamente de la clase HelloAppTest
+   stage('Build with unitary test') {
+      // Run the maven build
+      if (isUnix()) {
+       //  sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean package"
+          sh "'${mvnHome}/bin/mvn' surefire:test -Dtest=HelloAppTest"
+      } 
+   }
+   // El tercer stage corre las pruebas de integración, con el plugin failsafe, y 
+   // solamente de la clase HelloWithTestsIT
+    stage('Build with integration test') {
+      // Run the maven build
+      if (isUnix()) {
+       //  sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean package"
+          sh "'${mvnHome}/bin/mvn' failsafe:integration-test -Dtest=HelloWithTestsIT"
+      } 
+   }
+   stage('Results') {
+      //TODO: Aquí se controla el deploy, de momento simplemente de se
+      junit '**/target/surefire-reports/TEST-*.xml'
+      archive 'target/*.jar'
+   }
+}

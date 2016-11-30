@@ -80,18 +80,19 @@
                         <id>default-test</id>
                         <configuration>
                             <includes>
-                                <include>**/unit/**</include>
+                                <include>com/example/javamavenjunithelloworld/unit</include>
                             </includes>
                             <excludes>
-                                <exclude>**/integration/**</exclude>
+                                <exclude>com/example/javamavenjunithelloworld/integration</exclude>
                             </excludes>
                         </configuration>
                     </execution>
+                    
                     <execution>
                         <id>integration-test</id>
                         <phase>integration-test</phase>
                         <goals>
-                            <goal>test</goal>
+                            <goal>integration-test</goal>
                         </goals>
                         <configuration>
                             <includes>

@@ -66,23 +66,30 @@
         </configuration>
       </plugin>
       
-   <!--  
-      <plugin>
-   -->   
+    
+      <plugin>   
         <!-- Unit tests are run by surefire. -->
         <!-- Classes under src/test/java called *Test are included automatically. -->
         <!-- Integration tests are run during the test phase. -->
-   <!-- <groupId>org.apache.maven.plugins</groupId>
+    <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
         <version>2.16</version>
+        <configuration>
+         
+          <excludes>
+          <exclude>**/HelloTest.java</exclude>
+          <exclude>**/HelloAppTest.java</exclude>
+          </excludes>
+        </configuration>
       </plugin>
-      -->
+      
+      <!-- 
       <plugin>
-       
+        -->
         <!-- Integration tests are run by failsafe. -->
         <!-- Classes under src/test/java called *IT are included automatically. -->
         <!-- Integration tests are run during the verify phase. -->
-         <groupId>org.apache.maven.plugins</groupId>
+    <!--      <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-failsafe-plugin</artifactId>
         <version>2.16</version>
         <executions>
@@ -93,8 +100,8 @@
             </goals>
           </execution>
         </executions>
-      </plugin>
-      
+      </plugin>  
+       -->
     </plugins> 
   </build>
 <!-- 

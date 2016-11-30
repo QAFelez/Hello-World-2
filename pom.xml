@@ -104,25 +104,40 @@
                      
                 </executions>
       </plugin>
-      <!-- 
+      
         <plugin>
-        -->
+     
         <!-- Integration tests are run by failsafe. -->
         <!-- Classes under src/test/java called *IT are included automatically. -->
         <!-- Integration tests are run during the verify phase. -->
-   <!--      <groupId>org.apache.maven.plugins</groupId>
+        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-failsafe-plugin</artifactId>
         <version>2.16</version>
         <executions>
+        <execution>
+                        <id>integration-test</id>
+                        <phase>integration-test</phase>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+                        <configuration>
+                            <includes>
+                                <include>**/integration/**</include>
+                            </includes>
+                            <excludes>
+                                <exclude>**/unit/**</exclude>
+                            </excludes>
+                        </configuration>
+                    </execution>
           <execution>
             <goals>
               <goal>integration-test</goal>
               <goal>verify</goal>
-            </goals>
+            </goals>    
           </execution>
         </executions>
       </plugin>
-       -->
+    
     </plugins> 
   </build>
 <!-- 

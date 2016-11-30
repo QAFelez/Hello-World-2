@@ -1,4 +1,4 @@
-package com.example.javamavenjunithelloworld.unit;
+package com.example.javamavenjunithelloworld;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

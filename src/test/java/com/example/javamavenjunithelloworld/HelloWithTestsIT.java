@@ -1,4 +1,4 @@
-package com.example.javamavenjunithelloworld.integration;
+package com.example.javamavenjunithelloworld;
 
 import org.junit.Rule;
 import org.junit.Test;

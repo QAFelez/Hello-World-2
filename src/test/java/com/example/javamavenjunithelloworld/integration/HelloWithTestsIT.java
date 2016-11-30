@@ -1,8 +1,11 @@
-package com.example.javamavenjunithelloworld;
+package com.example.javamavenjunithelloworld.integration;
 
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.contrib.java.lang.system.StandardOutputStreamLog;
+
+import com.example.javamavenjunithelloworld.Hello;
+import com.example.javamavenjunithelloworld.HelloApp;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;

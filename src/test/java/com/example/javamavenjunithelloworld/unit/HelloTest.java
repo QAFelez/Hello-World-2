@@ -1,6 +1,8 @@
-package com.example.javamavenjunithelloworld;
+package com.example.javamavenjunithelloworld.unit;
 
 import org.junit.Test;
+
+import com.example.javamavenjunithelloworld.Hello;
 
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;

@@ -26,6 +26,19 @@ public class HelloTest {
 
         assertThat(os.toString(), is(equalTo(Hello.HELLO + "\n")));
     }
+    
+    @Test
+    public void testSayHelloWrong() {
+        
+        static final String HELLO2 = "Hello";
+        OutputStream os = new ByteArrayOutputStream();
+        PrintStream stream = new PrintStream(os, true);
+
+        Hello hi = new Hello();
+        hi.sayHello(stream);
+
+        assertThat(os.toString(), is(equalTo(HELLO2 + "\n")));
+    }
 
     @Test
     public void testSayHelloAFewTimes() {

@@ -52,6 +52,27 @@
     </dependency>
   </dependencies>
 
+
+<profiles>
+        <profile>
+            <id>slow-tests</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>2.19.1</version>
+                        <configuration>
+                            <includes>
+                                <include>**/integration</include>
+                            </includes>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
   <build>
       <plugins>
       <plugin>
@@ -79,15 +100,19 @@
         <version>2.16</version>
         <executions>
                      <execution>
-                        <id>default-test</id>
+                     <!--    <id>default-test</id>  -->
                         <configuration>
-                            <includes>
+                    <!--         <includes>
                                 <include>*/unit</include>
                             </includes>
                          
                             <excludes>   
                              <exclude>*/integration</exclude>
                             </excludes>
+                             -->
+                             <includes>
+                        <include>**/unit</include>
+                    </includes>
                         </configuration>
                     </execution>
                    

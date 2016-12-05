@@ -77,7 +77,7 @@ Jenkins ejecuta las pruebas de unidad
 
 ##Paso 1: Código
 Se vuelve a utilizar el mismo código *Hello World* que en el caso anterior. *Se añade el código de las pruebas de integración*. Se añaden los plugins para ejecución de pruebas de integración (failsafe) al POM.xml, y se modifican los plugins de unitarias e integración para que por defecto NO ejecute ninguna prueba, mediante el flag skipTests
-
+```
 <properties> 
   <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -119,7 +119,7 @@ Se vuelve a utilizar el mismo código *Hello World* que en el caso anterior. *Se
           </execution>
         </executions>
       </plugin>
-
+```
 ##Paso 2:
 
 

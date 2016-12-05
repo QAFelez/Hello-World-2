@@ -40,15 +40,90 @@ Para conseguir que cada vez que se realice un push se compile la aplicación en 
 
 #Iteración 2:
 
+
 Búsqueda de código, subirlo a Github, compilación en Jenkins y realización de pruebas unitarias.
+
 
 ##Paso 1: Código
 
-Se vuelve a utilizar el mismo código *Hello World* que en el caso anterior. *Se añade el código de las pruebas unitarias*
+
+Se vuelve a utilizar el mismo código *Hello World* que en el caso anterior. *Se añade las clases correspondiente a las pruebas de unidad*, en el POM.xml se añade el plugin que permite la ejecución de pruebas de unidad con Maven. Plugin *surfire*
+
+<plugin>      
+       <groupId>org.apache.maven.plugins</groupId>
+       <artifactId>maven-surefire-plugin</artifactId>
+       <version>2.16</version>
+</plugin>
+
 
 ##Paso 2:
 
 Se actualizan los ficheros del repositorio.
+
+
+##Paso 3:
+
+Jenkins toma los archivos y realiza la compilación de los mismos cuando se realiza el *push* de forma automática.
+
+
+##Paso 4:
+
+Jenkins ejecuta las pruebas de unidad
+
+
+#Iteración 3:
+
+
+##Paso 1: Código
+Se vuelve a utilizar el mismo código *Hello World* que en el caso anterior. *Se añade el código de las pruebas de integración*. Se añaden los plugins para ejecución de pruebas de integración (failsafe) al POM.xml, y se modifican los plugins de unitarias e integración para que por defecto NO ejecute ninguna prueba, mediante el flag skipTests
+
+<properties> 
+  <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+   <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+	<!-- Posibilidad de evitar todo tipo de tests (por defecto evitar) -->
+   <skipTests>true</skipTests>
+ </properties>
+
+  (...)
+  
+   <!-- Unit tests are run by surefire. -->
+        <!-- Classes under src/test/java called *Test are included automatically. -->
+        <!-- Integration tests are run during the test phase. -->
+      <plugin>
+         <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.16</version>
+        <configuration>
+		<!-- Evitar tests, controlado por un flag que se puede cambiar desde línea de comando -->		
+          <skipTests>${skipTests}</skipTests>
+        </configuration>		
+      </plugin>
+        <!-- Integration tests are run by failsafe. -->
+        <!-- Classes under src/test/java called *IT are included automatically. -->
+        <!-- Integration tests are run during the verify phase. -->
+      <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-failsafe-plugin</artifactId>
+        <version>2.16</version>
+        <configuration>
+		 <!-- Evitar tests, controlado por un flag que se puede cambiar desde línea de comando -->
+          <skipTests>${skipTests}</skipTests>
+        </configuration>		
+        <executions>
+          <execution>
+            <goals>
+              <goal>integration-test</goal>
+              <goal>verify</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+##Paso 2:
+
+
+Se actualizan los ficheros del repositorio.
+
 
 ##Paso 3:
 
@@ -56,6 +131,4 @@ Jenkins toma los archivos y realiza la compilación de los mismos cuando se real
 
 ##Paso 4:
 
-……
-
-#Iteración 3:
+Ejecutar pipeline asociado al proyecto desde Jenkins

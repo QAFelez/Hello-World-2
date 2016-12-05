@@ -76,7 +76,8 @@ Jenkins ejecuta las pruebas de unidad
 
 
 ##Paso 1: Código
-Se vuelve a utilizar el mismo código *Hello World* que en el caso anterior. *Se añade el código de las pruebas de integración*. Se añaden los plugins para ejecución de pruebas de integración (failsafe) al POM.xml, y se modifican los plugins de unitarias e integración para que por defecto NO ejecute ninguna prueba, mediante el flag skipTests
+Se vuelve a utilizar el mismo código *Hello World* que en el caso anterior. *Se añade el código de las pruebas de integración*. Se añaden los plugins para ejecución de pruebas de integración (failsafe) al POM.xml, y se modifican los plugins de unitarias e integración para que por defecto NO ejecute ninguna prueba, mediante el flag skipTests.
+Se actualizan los ficheros del repositorio.
 ```
 <properties> 
   <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -120,16 +121,50 @@ Se vuelve a utilizar el mismo código *Hello World* que en el caso anterior. *Se
         </executions>
       </plugin>
 ```
+
+
 ##Paso 2:
 
+Se ejecuta Jenkins por etapas, mediante un script de Groovy. En la primera de ellas se compilan los módulos desde GitHub, en la segunda se ejecutan las pruebas unitarias y en la tercera las de integración.
 
-Se actualizan los ficheros del repositorio.
-
-
-##Paso 3:
-
-Jenkins toma los archivos y realiza la compilación de los mismos cuando se realiza el *push* de forma automática.
-
-##Paso 4:
-
-Ejecutar pipeline asociado al proyecto desde Jenkins
+```
+//Aquí se separan las pruebas de integración de componentes de las unitarias
+// En este caso el POM.xml incluía todas las pruebas. Opcionalmente se pueden
+// usar comodines para descartar o aceptar ficheros (p.e. excluir ficheros acabados
+// en IT de las pruebas unitarias)
+node {
+   def mvnHome
+   // El primer Stage coje el código del repositorio
+   stage('Preparation') {
+      // Get some code from a GitHub repository
+      git 'https://github.com/QAFelez/Hello-World-2.git' 
+      // Get the Maven tool.
+      // ** NOTE: This 'M3' Maven tool must be configured
+      // **       in the global configuration.           
+      mvnHome = tool 'Maven'
+   }
+   // El segundo Stage corre las unitarias, con el plugin surefire, y en este caso
+   // solamente de la clase HelloAppTest
+   stage('Build with unitary test') {
+      // Run the maven build
+      if (isUnix()) {
+       //  sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean package"
+          sh "'${mvnHome}/bin/mvn' -DskipTests=false surefire:test -Dtest=HelloAppTest"
+      } 
+   }
+   // El tercer stage corre las pruebas de integración, con el plugin failsafe, y 
+   // solamente de la clase HelloWithTestsIT
+    stage('Build with integration test') {
+      // Run the maven build
+      if (isUnix()) {
+       //  sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean package"
+          sh "'${mvnHome}/bin/mvn' -DskipTests=false failsafe:integration-test -Dtest=HelloWithTestsIT"
+      } 
+   }
+   stage('Results') {
+      //TODO: Aquí se controla el deploy, de momento simplemente de se
+      junit '**/target/surefire-reports/TEST-*.xml'
+      archive 'target/*.jar'
+   }
+}
+```

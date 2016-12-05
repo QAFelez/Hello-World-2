@@ -49,11 +49,11 @@ Búsqueda de código, subirlo a Github, compilación en Jenkins y realización d
 
 Se vuelve a utilizar el mismo código *Hello World* que en el caso anterior. *Se añade las clases correspondiente a las pruebas de unidad*, en el POM.xml se añade el plugin que permite la ejecución de pruebas de unidad con Maven. Plugin *surfire*
 
-<plugin>      
+ **<plugin>      
        <groupId>org.apache.maven.plugins</groupId>
        <artifactId>maven-surefire-plugin</artifactId>
        <version>2.16</version>
-</plugin>
+</plugin>**
 
 
 ##Paso 2:
